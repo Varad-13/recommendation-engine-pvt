@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-gk=1ys+0f_pzoj^gw0=6e=%n6giii_jr5e3n1njf(k$fx^54o$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -42,6 +42,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'core.apps.CoreConfig',
+    'Messaging.apps.MessagingConfig',
+    'Notifications.apps.NotificationsConfig',
+    'Orders.apps.OrdersConfig',
+    'Portfolio.apps.PortfolioConfig',
+    'Reviews.apps.ReviewsConfig',
+    'Services.apps.ServicesConfig',
 ]
 
 MIDDLEWARE = [
