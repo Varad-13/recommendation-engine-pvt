@@ -16,3 +16,7 @@ Readme will be updated in a while
     git add -A
     git commit -a -m "A message describing your commit" --author="Name <email>"
     git push origin
+
+# To pick changes from this repo:
+    git fetch https://github.com/Varad-13/django-freelance
+    git cherry-pick <commit hash>
