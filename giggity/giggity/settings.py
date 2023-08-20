@@ -37,16 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #user added dependencies
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
+    #user added apps
     'core.apps.CoreConfig',
     'Messaging.apps.MessagingConfig',
-    'Notifications.apps.NotificationsConfig',
     'Orders.apps.OrdersConfig',
     'Portfolio.apps.PortfolioConfig',
-    'Reviews.apps.ReviewsConfig',
     'Services.apps.ServicesConfig',
 ]
 
@@ -59,6 +61,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [("localhost", 6379)],
+            },
+        },
+    }
 
 ROOT_URLCONF = 'giggity.urls'
 
@@ -78,19 +89,36 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'giggity.wsgi.application'
+ASGI_APPLICATION = 'giggity.asgi.application'
+
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'meet2004',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
-}
 
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
