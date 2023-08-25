@@ -1,3 +1,6 @@
 from django.db import models
+from Core.models import UserProfile
+from Services.models import Post
 
-# Create your models here.
+class Portfolio(models.Model):
+    post = models.OneToOneField(Post, on_delete=models.CASCADE)

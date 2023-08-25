@@ -37,14 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    #user added dependencies
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-
-    #user added apps
     'core.apps.CoreConfig',
     'Messaging.apps.MessagingConfig',
     'Orders.apps.OrdersConfig',
@@ -113,11 +109,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'meet2004',
-        'HOST': 'localhost',
+        'PASSWORD': 'giggity',
+        'HOST': '172.18.9.254',
         'PORT': '5432',
     }
-
 }
 
 # Password validation
