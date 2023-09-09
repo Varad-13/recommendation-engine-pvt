@@ -1,5 +1,5 @@
 from django.db import models
-from Core.models import UserProfile
+from core.models import UserProfile
 from Services.models import Post
 
 class Portfolio(models.Model):
