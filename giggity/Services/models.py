@@ -1,13 +1,5 @@
 from django.db import models
-from core.models import UserProfile, Freelancer, Image
-
-class Post(models.Model):
-    post_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
-    images = models.ManyToManyField(Image)
-    link = models.URLField()
+from core.models import UserProfile, Freelancer, Image, Post
 
 class Service(models.Model):
     is_recurring = models.BooleanField()
