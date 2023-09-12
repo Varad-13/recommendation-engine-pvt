@@ -29,6 +29,7 @@ class Post(models.Model):
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
     images = models.ManyToManyField(Image)
     link = models.URLField()
+    tags = models.ManyToManyField(Tag)
 
 class Interaction(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
