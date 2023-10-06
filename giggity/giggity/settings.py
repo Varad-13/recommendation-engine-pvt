@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'Messaging.apps.MessagingConfig',
     'Orders.apps.OrdersConfig',
-    'Portfolio.apps.PortfolioConfig',
     'Services.apps.ServicesConfig',
 ]
 

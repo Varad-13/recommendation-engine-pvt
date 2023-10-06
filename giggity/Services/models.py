@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import UserProfile, Freelancer, Image, Post
+from core.models import UserProfile, Freelancer, Post
 
 class Service(models.Model):
     is_recurring = models.BooleanField()
