@@ -34,7 +34,11 @@ class Post(models.Model):
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
     images = models.ManyToManyField(Image)
     link = models.URLField()
-    tags = models.ManyToManyField(Tag)
+
+class Post_tags(models.Model):
+    post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
+    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    score = models.TextField()
 
 class Interaction(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
@@ -45,3 +49,4 @@ class Interaction(models.Model):
 class Recommendations(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    visited = models.BooleanField(default=false)
