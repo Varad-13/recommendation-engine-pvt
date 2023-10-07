@@ -11,26 +11,35 @@
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>{% block header %}{% endblock %}</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #CD2A2A; color:black;">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+            <img src="../media/imgs/landing/logo.png">
+            </a>
+        </div>
+    
+        <div class="navbar-menu">
+    
+            <div class="navbar-end">
+            <a class="navbar-item" style="background-color: white;">
+                SIGN IN
+            </a>
+    
+            <a class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
+                SIGNUP
+            </a>
+    
+            </div>
+        </div>
+    </nav>
 
-        <main>
-            {% block content %}{% endblock %}
-        </main>
 
-        <footer>
-            <p>&copy; {% now "Y" %} Your Website</p>
-        </footer>
-    </div>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} Your Website</p>
+    </footer>
 </body>
 </html>
