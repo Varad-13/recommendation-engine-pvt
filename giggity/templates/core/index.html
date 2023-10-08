@@ -1,12 +1,43 @@
 {% extends "core/base.html" %}
 
-{% block title %}Home - Your Website Title{% endblock %}
-
-{% block header %}Welcome to Your Website{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-    <section>
-        <h2>Welcome to Our Homepage</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </section>
+
+<div class="section ">
+    <div class="columns is-fullheight">
+        <div class="column is-4">
+            <div class="card large">
+                <div class="card-image">
+                    <figure class="image is-16by9">
+                        <img src="https://images.unsplash.com/photo-1504173010664-32509aeebb62?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=713&amp;q=80" alt="Image">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-32x32">
+                                <img src="../media/imgs/landing/money.webp" alt="Image">
+                            </figure>
+                        </div> 
+                        <div class="media-content">
+                            Freelancer Name
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="title is-4 no-padding">Title</p>
+                        
+                    </div>
+                    <div class="content">
+                        <strong class="strong">From</strong><br>
+                        tag1, tag2
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+</div>
+
+
+
 {% endblock %}
