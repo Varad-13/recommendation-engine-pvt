@@ -33,7 +33,9 @@ class Post(models.Model):
     description = models.TextField()
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
     images = models.ImageField(upload_to='images/')
-    link = models.URLField()
+    link = models.SlugField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Post_tag(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

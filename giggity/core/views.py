@@ -14,3 +14,7 @@ def loggedin(request):
         
     }
     return render(request, 'core/index.html', context)
+
+def search(request, search):
+    results = Post.objects.filter(name__contains=search)
+    return render(request, 'core/search.html', results)

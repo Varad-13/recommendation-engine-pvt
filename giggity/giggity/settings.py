@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'Messaging.apps.MessagingConfig',
     'Orders.apps.OrdersConfig',
-    'Services.apps.ServicesConfig',
 ]
 
 MIDDLEWARE = [
