@@ -1,32 +1,37 @@
-{% extends "core/base.html" %}
+{% extends "base.html" %}
+
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
 
+{% load static %}
+
 <div class="section">
     <div class="title">For You</div>
     <div class="columns is-fullheight">
+        {% for Post in posts %}
         <div class="column is-4">
             <div class="card large">
                 <div class="card-image">
                     <figure class="image is-16by9">
-                        <img src="https://images.unsplash.com/photo-1504173010664-32509aeebb62?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=713&amp;q=80" alt="Image">
+                        <img src="{{Post.images.url}}" alt="Image">
                     </figure>
                 </div>
                 <div class="card-content">
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-32x32">
-                                <img src="../media/imgs/landing/money.webp" alt="Image">
+                                <img src="{% static 'assets/money.webp' %}" alt="Image">
                             </figure>
                         </div> 
                         <div class="media-content">
-                            Freelancer Name
+                            {{Post.freelancer.user_id.username}}
+                            
                         </div>
                     </div>
                     <div class="content">
-                        <p class="title is-4 no-padding">Title</p>
+                        <p class="title is-4 no-padding">{{Post.name}}</p>
                         
                     </div>
                     <div class="content">
@@ -36,6 +41,7 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>     
 </div>
 <div class="section">
@@ -52,11 +58,11 @@
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-32x32">
-                                <img src="../media/imgs/landing/money.webp" alt="Image">
+                                <img src="{% static 'assets/money.webp' %}" alt="Image">
                             </figure>
                         </div> 
                         <div class="media-content">
-                            Freelancer Name
+                            {{Post.freelancer.user_id.username}}
                         </div>
                     </div>
                     <div class="content">

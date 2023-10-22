@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('loggedin', views.loggedin)
+    path('index', views.loggedin, name='windex')
 ]

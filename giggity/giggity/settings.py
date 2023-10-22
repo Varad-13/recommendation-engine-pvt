@@ -31,18 +31,21 @@ ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
 
     #user added dependencies
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'channels',
+    'daphne',
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 
     #user added apps
     'core.apps.CoreConfig',
@@ -61,14 +64,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+ASGI_APPLICATION = 'giggity.asgi.application'
+
 CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {
-                "hosts": [("localhost", 6379)],
-            },
-        },
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
+}
 
 ROOT_URLCONF = 'giggity.urls'
 
@@ -88,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-ASGI_APPLICATION = 'giggity.asgi.application'
+
 
 
 
@@ -153,7 +155,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    # 'content/static',
+]
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

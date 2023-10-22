@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giggity</title>
-  <link rel="icon" type="image/x-icon" href="/media/imgs/landing/money.webp" />
+  <link rel="icon" type="image/x-icon" href="{% static 'assets/money.webp' %}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -40,19 +40,19 @@
   <!-- NavBar va a todo lo ancho -->
   <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #CD2A2A; color:black;">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="../media/imgs/landing/logo.png">
+      <a class="navbar-item" href="{% url 'windex' %}">
+        <img src="{% static 'assets/logo.png' %}">
       </a>
     </div>
     <div class="navbar-menu">
 
       <div class="navbar-end">
          
-        <a class="navbar-item" style="background-color: white;">
+        <a href ='/' class="navbar-item" style="background-color: white;">
           SIGN IN
         </a>
 
-        <a class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
+        <a href ='/' class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
           SIGNUP
         </a>
 
@@ -85,7 +85,7 @@
           is-7-widescreen 
           is-4-fullhd is-offset-1-fullhd">
             <figure class="image is-square">
-              <img src="../media/imgs/landing/quagmire.png">
+              <img src="{% static 'assets/quagmire.png' %}">
             </figure>
           </div>
 
@@ -105,7 +105,7 @@
           is-4-widescreen is-offset-1-widescreen
           is-4-fullhd is-offset-1-fullhd">
             <figure class="image is-square">
-              <img src="../media/imgs/landing/streamlined.png">
+              <img src="{% static 'assets/streamlined.png' %}">
             </figure>
           </div>
           <div data-aos="fade-down" class="column
@@ -151,7 +151,7 @@
           is-4-widescreen is-offset-1-widescreen
           is-4-fullhd is-offset-1-fullhd" data-aos="fade-up">
             <figure class="image is-square">
-              <img src="../media/imgs/landing/recommendations.png">
+              <img src="{% static 'assets/recommendations.png' %}">
             </figure>
           </div>
 
@@ -171,7 +171,7 @@
           is-4-widescreen is-offset-1-widescreen
           is-4-fullhd is-offset-1-fullhd">
             <figure class="image is-square">
-              <img src="../media/imgs/landing/razorpay.png">
+              <img src="{% static 'assets/razorpay.png' %}">
             </figure>
           </div>
           <div data-aos="fade-down" class="column

@@ -9,8 +9,12 @@ class UserProfile(AbstractUser):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     phone_number = models.CharField(max_length=20)
-    profile_image = models.ImageField(upload_to='images/')
+    profile_image = models.ImageField(upload_to='images/', default='assets/user-profile.svg')
     username = models.CharField(max_length=255, unique=True)
+    online_status = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.username
 
 class UserInterests(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
