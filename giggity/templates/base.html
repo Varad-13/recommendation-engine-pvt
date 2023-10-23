@@ -60,14 +60,14 @@
             <div class="navbar-item">
                 <div class="field is-vcentered has-addons has-addons-right">
                     <p class="control has-icons-left has-icons-right">
-                        <input class="input has-background-dark has-text-white" type="text">
+                        <input class="input has-background-dark has-text-white" type="text" id="search-input">
                         <span class="icon is-small is-left has-text-danger">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
                     </p>                 
                     
                     <p class="control">
-                        <a class="button has-background-white ">
+                        <a class="button has-background-white" id="search-button">
                             <i class="fa-solid fa-bolt "></i>
                         </a>
                     </p>
@@ -112,5 +112,20 @@
           </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+    
+            searchButton.addEventListener('click', function () {
+                const query = searchInput.value;
+                if (query) {
+                    const searchUrl = `/search/${query}`; // Construct the search URL
+                    window.location.href = searchUrl; // Redirect to the search URL
+                }
+            });
+        });
+    </script>
 </body>
 </html>

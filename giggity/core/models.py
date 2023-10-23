@@ -35,7 +35,6 @@ class Post(models.Model):
     images = models.ImageField(upload_to='images/')
     link = models.SlugField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    created_at = models.DateTimeField(auto_now_add=True)
 
 class Post_tag(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -53,3 +52,4 @@ class Recommendations(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     score = models.TextField()
     visited = models.BooleanField(default=False)
+    
