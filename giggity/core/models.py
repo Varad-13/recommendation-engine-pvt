@@ -47,6 +47,12 @@ class Interaction(models.Model):
     action = models.CharField(max_length=255)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+class Logs(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    action = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
 class Recommendations(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -56,4 +62,3 @@ class Recommendations(models.Model):
 class TopCharts(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     type = models.TextField()
-    
