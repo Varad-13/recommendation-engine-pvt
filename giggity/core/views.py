@@ -11,7 +11,6 @@ def loggedin(request):
     context = {
         'users': users,
         'posts' : posts,
-        
     }
     return render(request, 'core/index.html', context)
 
