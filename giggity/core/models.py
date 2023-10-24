@@ -24,8 +24,8 @@ class UserInterests(models.Model):
 class Freelancer(models.Model):
     user_id = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     freelancer_id = models.AutoField(primary_key=True)
-    custom_url = models.CharField(max_length=255, unique=True)
-    paypal_id = models.CharField(max_length=255)
+    custom_url = models.CharField(max_length=255, unique=True, null=True)
+    paypal_id = models.CharField(max_length=255, null=True)
 
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
