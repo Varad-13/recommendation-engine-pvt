@@ -52,4 +52,8 @@ class Recommendations(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     score = models.TextField()
     visited = models.BooleanField(default=False)
+
+class TopCharts(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    type = models.TextField()
     
