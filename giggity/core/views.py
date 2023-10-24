@@ -19,4 +19,4 @@ def search(request, query):
     context = {
         'posts' : results,
     }
-    return render(request, 'core/index.html', context)
+    return render(request, 'core/search.html', context)
