@@ -6,9 +6,9 @@ class Tag(models.Model):
     category = models.CharField(max_length=255)
 
 class UserProfile(AbstractUser):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True)
     email = models.EmailField()
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20, blank=True)
     profile_image = models.ImageField(upload_to='images/', default='assets/user-profile.svg')
     username = models.CharField(max_length=255, unique=True)
     online_status = models.BooleanField(default=False)

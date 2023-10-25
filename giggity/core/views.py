@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .models import UserProfile, Post, Post_tag, Recommendations
 
 def landing(request):
@@ -25,7 +26,7 @@ def index(request):
         return redirect('landing')
 
 def search(request, query):
-    results = Post.objects.filter(name__contains=query)
+    results = Post.objects.filter(Q(name__contains=query) | Q(description__contains=query))
     context = {
         'query' : query,
         'posts' : results,
