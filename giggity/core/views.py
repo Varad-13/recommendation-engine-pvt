@@ -103,5 +103,3 @@ def populate_post_tags(link):
     # Loop through each tag, creating Post_tag instances with a score of 0
     for tag in tags:
         post_tag, created = Post_tag.objects.get_or_create(post=post, tag=tag)
-        post_tag.score = 0
-        post_tag.save()

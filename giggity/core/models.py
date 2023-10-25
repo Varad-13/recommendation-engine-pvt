@@ -19,7 +19,7 @@ class UserProfile(AbstractUser):
 class UserInterests(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    score = models.FloatField()
+    score = models.FloatField(default = 0)
 
 class Freelancer(models.Model):
     user_id = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
@@ -39,7 +39,7 @@ class Post(models.Model):
 class Post_tag(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    score = models.TextField()
+    score = models.TextField(default = 0)
 
 class Interaction(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
