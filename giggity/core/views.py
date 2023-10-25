@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
-from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs, Freelancer
+from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs, Freelancer, Tag
 from .forms import PostForm
+from django.utils.text import slugify
 
 def landing(request):
     if request.user.is_authenticated:
