@@ -39,7 +39,7 @@
 <body>
     <div class="container">
         <div class="user-info">
-             <h2> <b>  {{request.user.username}}  </b> </h2>
+             <h2> <b>  {{ user.username }}  </b> </h2>
             <span class="online-status is-online">
                 {% if user.online_status %}
                 <small id="{{user.username}}_small">Online</small>
@@ -55,7 +55,7 @@
                 
                 
                 <div class="message-header">
-                    <p class="username">{{request.user.username}}</p>
+                    <p class="username">You</p>
                     <p class="timestamp">{{message.timestamp|time:'H:i'}}</p>
                 </div>
                 <div class="message-body">
@@ -67,7 +67,7 @@
                 
                             
                 <div class="message-header">
-                    <p class="username">You </p>
+                    <p class="username">{{ user.username }}</p>
                     <p class="timestamp">{{message.timestamp|time:'H:i'}}</p>
                 </div>
                 <div class="message-body">

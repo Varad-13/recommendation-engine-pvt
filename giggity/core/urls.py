@@ -9,5 +9,5 @@ urlpatterns = [
     path('top', views.top_posts_view, name='top'),
     path('create_post', views.create_post, name='create_post'),
     path('details/<slug:link>', views.post_details, name='details'),
-    path('update_tag_scores/<slug:link>/', views.update_tag_scores, name='update_tag_scores'),
+    path('update_tag_scores/<slug:link>', views.update_tag_scores, name='update_tag_scores'),
 ]

@@ -1,15 +1,12 @@
-<!-- update_tag_scores.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Update Tag Scores</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Update Tag Scores{% endblock %}
+
+{% block content %}
     <h1>Update Tag Scores for {{ post.name }}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Update Scores">
     </form>
-</body>
-</html>
+{% endblock %}
