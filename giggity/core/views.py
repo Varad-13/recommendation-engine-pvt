@@ -66,16 +66,14 @@ def create_post(request):
             post.link = slugify(post.name.replace(" ", "-")) 
             post.save()
             populate_post_tags(post.link)
-            return redirect('details', post.link)
+            
+            return redirect('update_tag_scores', link)
     else:
         form = PostForm()
     return render(request, 'core/create_post.html', {'form': form, 'error':error})
 
 def post_details(request, link):
-    post = get_object_or_404(Post, link=link)
-    tags = Post_tag.objects.filter(post=post, score=10)
-    if not tags and post.freelancer.user_id == request.user:
-        print("No Tags :()") #Temporary response. TODO: Redirect to a page where tags can be added
+    post = get_object_or_404(Post, link=link)    
     context={
         'post' : post
     }
@@ -110,7 +108,7 @@ def update_tag_scores(request, link):
             if tag2:
                 Post_tag.objects.update_or_create(post=post, tag=tag2, defaults={'score': 10})
 
-            return redirect('index')
+            return redirect('details', post.link)
 
     else:
         form = TagSelectionForm()
