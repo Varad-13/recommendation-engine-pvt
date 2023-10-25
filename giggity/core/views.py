@@ -9,17 +9,20 @@ def landing(request):
 
 
 def index(request):
-    users = UserProfile.objects.exclude(username=request.user.username)
-    posts = Post.objects.all()
-    user_profiles = UserProfile.objects.in_bulk([post.freelancer.user_id.id for post in posts])
-    tags = Post_tag.objects.filter(post__in=posts).distinct()
-    context = {
-        'users': users,
-        'posts' : posts,
-        'user_profiles': user_profiles,
-        'tags': tags,
-    }
-    return render(request, 'core/index.html', context)
+    if request.user.is_authenticated:
+        users = UserProfile.objects.exclude(username=request.user.username)
+        posts = Post.objects.all()
+        user_profiles = UserProfile.objects.in_bulk([post.freelancer.user_id.id for post in posts])
+        tags = Post_tag.objects.filter(post__in=posts).distinct()
+        context = {
+            'users': users,
+            'posts' : posts,
+            'user_profiles': user_profiles,
+            'tags': tags,
+        }
+        return render(request, 'core/index.html', context)
+    else:
+        return redirect('landing')
 
 def search(request, query):
     results = Post.objects.filter(name__contains=query)
