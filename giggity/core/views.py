@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
 from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs
 from .forms import PostForm
@@ -68,6 +68,9 @@ def create_post(request):
 
 def post_details(request, link):
     post = get_object_or_404(Post, link=link)
+    context={
+        'post' : post
+    }
     if request.user.is_authenticated:
         user = request.user
         interaction = Interaction(
@@ -82,3 +85,4 @@ def post_details(request, link):
             action="click",
         )
         log.save()
+    return render(request, 'core/details.html', context)
