@@ -17,29 +17,33 @@
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
-                                    <a href="{% url 'user_profile' post.freelancer.user_id.id %}">
+                                    <a href="{% url 'chat' post.freelancer.user_id.username %}">
                                         <figure class="image is-32x32">
                                             <img src="{{ post.freelancer.user_id.profile_image.url }}" alt="Profile Image">
                                         </figure>
                                     </a>
                                 </div>
                                 <div class="media-content">
-                                    <a href="{% url 'user_profile' post.freelancer.user_id.id %}">
+                                    <a href="{% url 'chat' post.freelancer.user_id.username %}">
                                         {{ post.freelancer.user_id.username }}
                                     </a>
                                 </div>
                             </div>
+                            <a href="{% url 'details' post.link%}">
                             <div class="content">
                                 <p class="title is-4 no-padding">{{ post.name }}</p>
                                 <p>{{ post.description }}</p>
                             </div>
+                            </a>
                             <div class="content">
                                 <strong class="strong">Amount: ${{ post.amount }}</strong>
                             </div>
                             <div class="content">
                                 <strong class="strong">Tags:</strong>
-                                {% for post_tag in post.post_tag_set.all %}
-                                    <span class="tag is-primary">{{ post_tag.tag.tag }}</span>
+                                {% for tag in tags %}
+                                    {% if tag.post == post %}
+                                        <span class="tag is-primary">{{ tag.tag.tag }}</span>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
