@@ -44,3 +44,20 @@ def top_posts_view(request):
     top_posts = Post.objects.all().order_by('-post_id')[:9]  # Adjust the ordering criteria as needed
 
     return render(request, 'core/top_posts.html', {'posts': top_posts})
+
+
+def create_post(request):
+    error = None
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if not request.FILES.get('images'):
+            error = "Image is a required field!"
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.freelancer = request.user
+            post.link = slugify(post.name.replace(" ", "-")) 
+            post.save()
+            return redirect('index') #Temporarily redirect to homepage
+        else:
+            form = PostForm()
+        return render(request, 'core/create_post.html', {'form': form, 'error':error})
