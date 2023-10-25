@@ -64,7 +64,7 @@ def create_post(request):
             post.link = slugify(post.name.replace(" ", "-")) 
             post.save()
             populate_post_tags(post.link)
-            return redirect('post_details', post.link)
+            return redirect('details', post.link)
     else:
         form = PostForm()
     return render(request, 'core/create_post.html', {'form': form, 'error':error})
