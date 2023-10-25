@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
-from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs
+from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs, Freelancer
 from .forms import PostForm
 
 def landing(request):
