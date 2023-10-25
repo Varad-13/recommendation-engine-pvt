@@ -48,13 +48,20 @@
 
       <div class="navbar-end">
          
-        <a href ='/' class="navbar-item" style="background-color: white;">
-          SIGN IN
-        </a>
-
-        <a href ='/' class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
-          SIGNUP
-        </a>
+        {% if request.user.is_authenticated %}
+                <!-- User is logged in, so display a "Sign Out" link -->
+                <a href="{% url 'account_logout' %}" class="navbar-item" style="background-color: black; color: white;">
+                    SIGN OUT
+                </a>
+        {% else %}
+            <!-- User is not logged in, so display "Sign In" and "Sign Up" links -->
+            <a href="{% url 'account_login' %}" class="navbar-item" style="background-color: white;">
+                SIGN IN
+            </a>
+            <a href="{% url 'account_signup' %}" class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
+                SIGN UP
+            </a>
+        {% endif %}
 
       </div>
     </div>

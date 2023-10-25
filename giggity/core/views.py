@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import UserProfile, Post, Post_tag, Recommendations
 
 def landing(request):
-    return render(request, 'core/landing.html')
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        return render(request, 'core/landing.html')
+
 
 def index(request):
     users = UserProfile.objects.exclude(username=request.user.username)
