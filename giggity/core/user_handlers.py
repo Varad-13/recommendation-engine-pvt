@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from .models import UserProfile, Tag, UserInterests, Freelancer
+from core.models import UserProfile, Tag, UserInterests, Freelancer  # Import models inside the functions
 
 def create_freelancer_profile(user):
     # Create a Freelancer instance for the given user
@@ -8,7 +8,7 @@ def create_freelancer_profile(user):
 def populate_user_interests(user):
     # Get the user profile
     user_profile = get_object_or_404(UserProfile, user=user)
-    
+   
     # Get all tags
     tags = Tag.objects.all()
 
