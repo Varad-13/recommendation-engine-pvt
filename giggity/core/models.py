@@ -39,7 +39,7 @@ class Post(models.Model):
 class Post_tag(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    score = models.TextField(default = 0)
+    score = models.IntegerField(default = 0)
 
 class Interaction(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

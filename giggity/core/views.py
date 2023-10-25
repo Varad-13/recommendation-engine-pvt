@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
 from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs, Freelancer, Tag
-from .forms import PostForm
+from .forms import PostForm, PostTagForm
 from django.utils.text import slugify
 
 def landing(request):
@@ -16,7 +16,8 @@ def index(request):
         users = UserProfile.objects.exclude(username=request.user.username)
         posts = Post.objects.all()
         user_profiles = UserProfile.objects.in_bulk([post.freelancer.user_id.id for post in posts])
-        tags = Post_tag.objects.filter(post__in=posts, score=10)
+        post_tags = Post_tag.objects.filter(post__in=posts)
+        tags = post_tags.filter(score=10)
         context = {
             'users': users,
             'posts' : posts,
@@ -93,6 +94,19 @@ def post_details(request, link):
         log.save()
     return render(request, 'core/details.html', context)
 
+def update_post_tags(request, post_link):
+    post = Post.objects.get(link=post_link)
+    
+    if request.method == 'POST':
+        form = PostTagForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page or do something else.
+            return redirect('details', post_link)
+    else:
+        form = PostTagForm(instance=post)
+    
+    return render(request, 'core/update_post_tags.html', {'form': form, 'post': post})    
 
 # Automated tasks
 
