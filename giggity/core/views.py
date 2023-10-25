@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import UserProfile, Post, Post_tag, Recommendations
+from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs
 from .forms import PostForm
 
 def landing(request):
@@ -35,11 +35,14 @@ def search(request, query):
     return render(request, 'core/search.html', context)
 
 def recommendations_view(request):
-    user = request.user # Assuming you're using authentication
-    recommendations = Recommendations.objects.filter(user=user, visited=False).order_by('-score')[:9]
-    recommended_posts = [recommendation.post for recommendation in recommendations]
+    user = request.user
+    if user.is_authenticated:
+        recommendations = Recommendations.objects.filter(user=user, visited=False).order_by('-score')[:9]
+        recommended_posts = [recommendation.post for recommendation in recommendations]
 
-    return render(request, 'core/for_you.html', {'posts': recommended_posts})
+        return render(request, 'core/for_you.html', {'posts': recommended_posts})
+    else:
+        return redirect('index')
 
 def top_posts_view(request):
     top_posts = Post.objects.all().order_by('-post_id')[:9]  # Adjust the ordering criteria as needed
@@ -62,3 +65,20 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'core/create_post.html', {'form': form, 'error':error})
+
+def post_details(request, link):
+    post = get_object_or_404(Post, link=link)
+    if request.user.is_authenticated:
+        user = request.user
+        interaction = Interaction(
+            user=user,
+            post=post,
+            action="click",
+        )
+        interaction.save()
+        log = Logs(
+            user=user,
+            post=post,
+            action="click",
+        )
+        log.save()
