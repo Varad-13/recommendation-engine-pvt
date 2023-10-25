@@ -58,7 +58,8 @@ def create_post(request):
             error = "Image is a required field!"
         if form.is_valid():
             post = form.save(commit=False)
-            post.freelancer = request.user
+            freelancer = Freelancer.objects.get(user_id=request.user)
+            post.freelancer = freelancer
             post.link = slugify(post.name.replace(" ", "-")) 
             post.save()
             return redirect('index') #Temporarily redirect to homepage
