@@ -62,13 +62,17 @@ def create_post(request):
             post.freelancer = freelancer
             post.link = slugify(post.name.replace(" ", "-")) 
             post.save()
-            return redirect('post_details', post.link) #Temporarily redirect to homepage
+            populate_post_tags(post.link)
+            return redirect('post_details', post.link)
     else:
         form = PostForm()
     return render(request, 'core/create_post.html', {'form': form, 'error':error})
 
 def post_details(request, link):
     post = get_object_or_404(Post, link=link)
+    tags = Post_tag.objects.filter(post__in=posts, score__gt=0).distinct()
+    if not tags and post.freelancer.userid == request.user:
+        print(".") #Temporary response. TODO: Redirect to a page where tags can be added
     context={
         'post' : post
     }
@@ -87,3 +91,17 @@ def post_details(request, link):
         )
         log.save()
     return render(request, 'core/details.html', context)
+
+
+# Automated tasks
+
+def populate_post_tags(link):
+    # Get all posts and tags
+    post = get_object_or_404(Post, link=link)
+    tags = Tag.objects.all()
+
+    # Loop through each tag, creating Post_tag instances with a score of 0
+    for tag in tags:
+        post_tag, created = Post_tag.objects.get_or_create(post=post, tag=tag)
+        post_tag.score = 0
+        post_tag.save()
