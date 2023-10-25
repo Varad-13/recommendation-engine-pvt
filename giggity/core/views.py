@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
 from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs, Freelancer, Tag
-from .forms import PostForm, PostTagForm
+from .forms import PostForm, TagSelectionForm
 from django.utils.text import slugify
 
 def landing(request):
@@ -16,8 +16,7 @@ def index(request):
         users = UserProfile.objects.exclude(username=request.user.username)
         posts = Post.objects.all()
         user_profiles = UserProfile.objects.in_bulk([post.freelancer.user_id.id for post in posts])
-        post_tags = Post_tag.objects.filter(post__in=posts)
-        tags = post_tags.filter(score=10)
+        tags = Post_tag.objects.filter(post__in=posts, score=10)
         context = {
             'users': users,
             'posts' : posts,
@@ -30,9 +29,11 @@ def index(request):
 
 def search(request, query):
     results = Post.objects.filter(Q(name__contains=query) | Q(description__contains=query))
+    tags = Post_tag.objects.filter(post__in=results, score=10)
     context = {
         'query' : query,
         'posts' : results,
+        'tags' : tags,
     }
     return render(request, 'core/search.html', context)
 
@@ -94,19 +95,27 @@ def post_details(request, link):
         log.save()
     return render(request, 'core/details.html', context)
 
-def update_post_tags(request, post_link):
-    post = Post.objects.get(link=post_link)
-    
+def update_tag_scores(request, link):
+    post = get_object_or_404(Post, link=link)
+
     if request.method == 'POST':
-        form = PostTagForm(request.POST, instance=post)
+        form = TagSelectionForm(request.POST)
+
         if form.is_valid():
-            form.save()
-            # Redirect to a success page or do something else.
-            return redirect('details', post_link)
+            tag1 = form.cleaned_data['tag1']
+            tag2 = form.cleaned_data['tag2']
+
+            if tag1:
+                Post_tag.objects.update_or_create(post=post, tag=tag1, defaults={'score': 10})
+            if tag2:
+                Post_tag.objects.update_or_create(post=post, tag=tag2, defaults={'score': 10})
+
+            return redirect('index')
+
     else:
-        form = PostTagForm(instance=post)
-    
-    return render(request, 'core/update_post_tags.html', {'form': form, 'post': post})    
+        form = TagSelectionForm()
+
+    return render(request, 'core/update_tag_scores.html', {'form': form, 'post': post})
 
 # Automated tasks
 

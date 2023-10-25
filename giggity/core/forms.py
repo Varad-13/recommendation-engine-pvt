@@ -13,10 +13,6 @@ class PostForm(forms.ModelForm):
             'amount': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Amount', 'required':True})
         }
 
-class PostTagForm(forms.ModelForm):
-    class Meta:
-        model = Post_tag
-        fields = ['tag']
-        widgets = {
-            'tag': forms.CheckboxSelectMultiple,
-        }
+class TagSelectionForm(forms.Form):
+    tag1 = forms.ModelChoiceField(queryset=Tag.objects.all(), empty_label="Select Tag 1", required=False)
+    tag2 = forms.ModelChoiceField(queryset=Tag.objects.all(), empty_label="Select Tag 2", required=False)
