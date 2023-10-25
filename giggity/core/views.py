@@ -33,7 +33,7 @@ def search(request, query):
     return render(request, 'core/search.html', context)
 
 def recommendations_view(request):
-    user = request.user  # Assuming you're using authentication
+    user = request.user # Assuming you're using authentication
     recommendations = Recommendations.objects.filter(user=user, visited=False).order_by('-score')[:9]
     recommended_posts = [recommendation.post for recommendation in recommendations]
 

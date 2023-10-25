@@ -51,28 +51,57 @@
     <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #CD2A2A; color:black;">
         <div class="navbar-brand">
             <a class="navbar-item" href="{% url 'landing' %}">
-            <img src="{% static 'assets/logo.png' %}">
+                <img src="{% static 'assets/logo.png' %}">
             </a>
         </div>
     
-        <div class="navbar-menu">            
-            <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="field is-vcentered has-addons has-addons-right">
-                    <p class="control has-icons-left has-icons-right">
-                        <input class="input has-background-dark has-text-white" type="text" id="search-input">
-                        <span class="icon is-small is-left has-text-danger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </span>
-                    </p>                 
-                    
-                    <p class="control">
-                        <a class="button has-background-white" id="search-button">
-                            <i class="fa-solid fa-bolt "></i>
-                        </a>
-                    </p>
+        <div class="navbar-menu">  
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <a href="">
+                        <div class="button is-white">
+                            <span class="icon is-small">
+                                <i class="fa-solid fa-compass"></i>
+                            </span>
+                        </div> 
+                    </a>
                 </div>
-            </div> 
+                <div class="navbar-item">
+                    <a href="">
+                        <div class="button is-white">
+                            <span class="icon is-small">
+                                <i class="fa-solid fa-heart"></i>
+                            </span>
+                        </div> 
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a href="">
+                        <div class="button is-white">
+                            <span class="icon is-small">
+                                <i class="fa-solid fa-award"></i>
+                            </span>
+                        </div> 
+                    </a>
+                </div>
+            </div>          
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-vcentered has-addons has-addons-right">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" id="search-input">
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                        </p>                 
+                        
+                        <p class="control">
+                            <a class="button" id="search-button">
+                                <i class="fa-solid fa-bolt "></i>
+                            </a>
+                        </p>
+                    </div>
+                </div> 
             
             {% if request.user.is_authenticated %}
                 <!-- User is logged in, so display a "Sign Out" link -->
