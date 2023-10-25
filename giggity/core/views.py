@@ -14,7 +14,7 @@ def index(request):
         users = UserProfile.objects.exclude(username=request.user.username)
         posts = Post.objects.all()
         user_profiles = UserProfile.objects.in_bulk([post.freelancer.user_id.id for post in posts])
-        tags = Post_tag.objects.filter(post__in=posts).distinct()
+        tags = Post_tag.objects.filter(post__in=posts, score__gt=0).distinct()
         context = {
             'users': users,
             'posts' : posts,
