@@ -67,7 +67,7 @@ def create_post(request):
             post.save()
             populate_post_tags(post.link)
             
-            return redirect('update_tag_scores', link)
+            return redirect('update_tag_scores', post.link)
     else:
         form = PostForm()
     return render(request, 'core/create_post.html', {'form': form, 'error':error})

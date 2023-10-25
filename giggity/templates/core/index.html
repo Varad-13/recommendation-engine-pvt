@@ -41,7 +41,9 @@
                             <div class="content">
                                 <strong class="strong">Tags:</strong>
                                 {% for tag in tags %}
-                                    <span class="tag is-primary">{{ tag.tag.tag }}</span>
+                                    {% if tag.post == post %}
+                                        <span class="tag is-primary">{{ tag.tag.tag }}</span>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
