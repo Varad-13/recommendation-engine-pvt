@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from .models import UserProfile, Post, Post_tag, Recommendations
+from .forms import PostForm
 
 def landing(request):
     if request.user.is_authenticated:
@@ -58,6 +59,6 @@ def create_post(request):
             post.link = slugify(post.name.replace(" ", "-")) 
             post.save()
             return redirect('index') #Temporarily redirect to homepage
-        else:
-            form = PostForm()
-        return render(request, 'core/create_post.html', {'form': form, 'error':error})
+    else:
+        form = PostForm()
+    return render(request, 'core/create_post.html', {'form': form, 'error':error})

@@ -9,6 +9,6 @@ class PostForm(forms.ModelForm):
         fields = ['name', 'description', 'images', 'amount']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Name of your Service', 'required':True}),
-            'description': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Describe your Service', 'required':True})
+            'description': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Describe your Service', 'required':True}),
             'amount': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Amount', 'required':True})
         }

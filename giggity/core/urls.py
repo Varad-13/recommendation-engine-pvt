@@ -7,4 +7,5 @@ urlpatterns = [
     path('search/<str:query>', views.search, name='search'),
     path('for_you', views.recommendations_view, name='recommendations'),
     path('top', views.top_posts_view, name='recommendations'),
+    path('create_post', views.create_post, name='create_post')
 ]
