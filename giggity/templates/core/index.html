@@ -29,10 +29,12 @@
                                     </a>
                                 </div>
                             </div>
+                            <a href="{% url 'details' post.link%}">
                             <div class="content">
                                 <p class="title is-4 no-padding">{{ post.name }}</p>
                                 <p>{{ post.description }}</p>
                             </div>
+                            </a>
                             <div class="content">
                                 <strong class="strong">Amount: ${{ post.amount }}</strong>
                             </div>

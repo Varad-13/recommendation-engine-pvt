@@ -62,7 +62,7 @@ def create_post(request):
             post.freelancer = freelancer
             post.link = slugify(post.name.replace(" ", "-")) 
             post.save()
-            return redirect('index') #Temporarily redirect to homepage
+            return redirect('post_details', post.link) #Temporarily redirect to homepage
     else:
         form = PostForm()
     return render(request, 'core/create_post.html', {'form': form, 'error':error})

@@ -49,7 +49,7 @@
         <div class="navbar-menu">  
             <div class="navbar-start">
                 <div class="navbar-item">
-                    <a href="">
+                    <a href="{% url 'index'%}">
                         <div class="button is-white">
                             <span class="icon is-small">
                                 <i class="fa-solid fa-compass"></i>
@@ -58,7 +58,7 @@
                     </a>
                 </div>
                 <div class="navbar-item">
-                    <a href="">
+                    <a href="{% url 'recommendations'%}">
                         <div class="button is-white">
                             <span class="icon is-small">
                                 <i class="fa-solid fa-heart"></i>
@@ -67,10 +67,10 @@
                     </a>
                 </div>
                 <div class="navbar-item">
-                    <a href="">
+                    <a href="{% url 'create_post'%}">
                         <div class="button is-white">
                             <span class="icon is-small">
-                                <i class="fa-solid fa-award"></i>
+                                <i class="fa-solid fa-plus"></i>
                             </span>
                         </div> 
                     </a>
@@ -117,7 +117,7 @@
 
     <main>
         <section class="hero is-fullheight-with-navbar">
-            <div class="hero-body has-background-grey">
+            <div class="hero-body has-background-grey-lighter">
                 <div class="container">
                     {% block content %}{% endblock %}
                 </div>
