@@ -16,7 +16,7 @@ def index(request):
         users = UserProfile.objects.exclude(username=request.user.username)
         posts = Post.objects.all()
         user_profiles = UserProfile.objects.in_bulk([post.freelancer.user_id.id for post in posts])
-        tags = Post_tag.objects.filter(post__in=posts, score__in=10)
+        tags = Post_tag.objects.filter(post__in=posts, score=10)
         context = {
             'users': users,
             'posts' : posts,
@@ -71,8 +71,8 @@ def create_post(request):
 
 def post_details(request, link):
     post = get_object_or_404(Post, link=link)
-    tags = Post_tag.objects.filter(post__in=posts, score__gt=0).distinct()
-    if not tags and post.freelancer.userid == request.user:
+    tags = Post_tag.objects.filter(post=post, score=10).distinct()
+    if not tags and post.freelancer.user_id == request.user:
         print(".") #Temporary response. TODO: Redirect to a page where tags can be added
     context={
         'post' : post
