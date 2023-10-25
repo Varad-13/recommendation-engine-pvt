@@ -71,9 +71,9 @@ def create_post(request):
 
 def post_details(request, link):
     post = get_object_or_404(Post, link=link)
-    tags = Post_tag.objects.filter(post=post, score=10).distinct()
+    tags = Post_tag.objects.filter(post=post, score=10)
     if not tags and post.freelancer.user_id == request.user:
-        print(".") #Temporary response. TODO: Redirect to a page where tags can be added
+        print("No Tags :()") #Temporary response. TODO: Redirect to a page where tags can be added
     context={
         'post' : post
     }
