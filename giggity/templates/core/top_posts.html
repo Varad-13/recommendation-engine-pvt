@@ -17,14 +17,14 @@
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
-                                    <a href="{% url 'user_profile' post.freelancer.user_id.id %}">
+                                    <a href="{% url 'chat' post.freelancer.user_id.id %}">
                                         <figure class="image is-32x32">
                                             <img src="{{ post.freelancer.user_id.profile_image.url }}" alt="Profile Image">
                                         </figure>
                                     </a>
                                 </div>
                                 <div class="media-content">
-                                    <a href="{% url 'user_profile' post.freelancer.user_id.id %}">
+                                    <a href="{% url 'chat' post.freelancer.user_id.id %}">
                                         {{ post.freelancer.user_id.username }}
                                     </a>
                                 </div>
