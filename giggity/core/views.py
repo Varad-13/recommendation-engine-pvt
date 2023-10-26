@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
-from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs, Freelancer, Tag
+from .models import UserProfile, Post, Post_tag, Recommendations, Interaction, Logs, Freelancer, Tag, TopCharts
 from .forms import PostForm, TagSelectionForm
 from django.utils.text import slugify
 
@@ -48,9 +48,16 @@ def recommendations_view(request):
         return redirect('index')
 
 def top_posts_view(request):
-    top_posts = Post.objects.all().order_by('-post_id')[:9]  # Adjust the ordering criteria as needed
+    top_posts = Post.objects.filter(topcharts__type='Top')
+    latest_posts = Post.objects.filter(topcharts__type='Latest')
+    grossing_posts = Post.objects.filter(topcharts__type='Grossing')
+    context = {
+        'latest_posts': latest_posts,
+        'top_posts': top_posts,
+        'grossing_posts': grossing_posts,
+    }
 
-    return render(request, 'core/top_posts.html', {'posts': top_posts})
+    return render(request, 'core/top_posts.html', context)
 
 
 def create_post(request):
