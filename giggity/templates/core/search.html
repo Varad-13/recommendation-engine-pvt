@@ -10,11 +10,6 @@
       {% for post in posts %}
         <div class="column is-one-third">
           <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="{{ post.images.url }}" alt="{{ post.name }}">
-              </figure>
-            </div>
             <div class="card-content">
               <p class="title is-4">{{ post.name }}</p>
               <p class="subtitle is-6">Posted by {{ post.freelancer.user_id.username }}</p>
