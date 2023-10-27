@@ -96,6 +96,8 @@ def cosine_similarity(dict1, dict2):
     if dot_product==0:
         return 0
     similarity = dot_product / (magnitude1 * magnitude2)
+    if similarity > 1:
+        return 0
     print(str(similarity))
     return similarity
 
