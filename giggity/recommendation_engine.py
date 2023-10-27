@@ -63,6 +63,8 @@ def normalise(interactions):
 
 def generatescores(interests, interactions):
     average_scores = {}
+    user_interests=interests
+    user_interactions=interactions
     # Iterate through user_interests and user_interactions to calculate the average
     for tag in user_interests:
         if tag in user_interactions:
