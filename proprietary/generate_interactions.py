@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 
 # Connect to the SQLite database
-conn = sqlite3.connect('db.sqlite3')
+conn = sqlite3.connect('C:/Users/varad/Desktop/giggity/giggity/db.sqlite3')
 cursor = conn.cursor()
 
 # Fetch all users

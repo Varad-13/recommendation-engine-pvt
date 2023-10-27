@@ -219,7 +219,7 @@ def cachetop():
     con.commit()
 
 #Main execution
-con = connect_db('db.sqlite3')
+con = connect_db('C:/Users/varad/Desktop/giggity/giggity/db.sqlite3')
 users = fetch_users()
 posts = fetch_posts()
 cachetop()
