@@ -172,7 +172,7 @@ def generate_latest_top():
         FROM core_interaction
         GROUP BY post_id
         ORDER BY post_count DESC
-        LIMIT 5
+        LIMIT 20
     """)
     latest_posts = cursor.fetchall()
     for post_id, _ in latest_posts:
@@ -185,7 +185,7 @@ def generate_top():
         FROM core_logs
         GROUP BY post_id
         ORDER BY post_count DESC
-        LIMIT 5
+        LIMIT 20
     """)
     top_posts = cursor.fetchall()
     for post_id, _ in top_posts:
@@ -198,7 +198,7 @@ def generate_grossing():
         FROM core_recommendations
         GROUP BY post_id
         ORDER BY post_count DESC
-        LIMIT 5
+        LIMIT 20
     """)
     grossing_posts = cursor.fetchall()
     for post_id, _ in grossing_posts:
