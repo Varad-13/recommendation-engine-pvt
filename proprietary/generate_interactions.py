@@ -19,7 +19,7 @@ posts = cursor.fetchall()
 if len(sys.argv) > 1:
     num_interactions = int(sys.argv[1])
 else:
-    num_interactions = 100
+    num_interactions = 20
 
 # Generate random interactions
 for _ in range(num_interactions):

@@ -40,7 +40,7 @@ def search(request, query):
 def recommendations_view(request):
     user = request.user
     if user.is_authenticated:
-        recommendations = Recommendations.objects.filter(user=user, visited=False).order_by('-score')[:9]
+        recommendations = Recommendations.objects.filter(user=user, visited=False).order_by('score')[:30]
         recommended_posts = [recommendation.post for recommendation in recommendations]
 
         return render(request, 'core/for_you.html', {'posts': recommended_posts})

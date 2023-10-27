@@ -100,7 +100,6 @@ def cosine_similarity(dict1, dict2):
     return similarity
 
 def recommend(userid, postid, similarity):
-    cacherecommendations(userid, postid)
     print("Generated Recommendation")
     query = 'INSERT into core_recommendations (post_id, user_id, score, visited) values ('+str(postid)+','+str(userid)+','+str(similarity)+',"False");'
     cursor = con.cursor()
@@ -113,13 +112,14 @@ def cacheinteractions():
     cursor.execute(query)
     con.commit()
 
-def cacherecommendations(userid, postid):
-    query = 'DELETE FROM core_recommendations WHERE post_id='+str(postid)+' AND user_id='+str(userid)+';'
+def cacherecommendations():
+    query = 'DELETE FROM core_recommendations'
     cursor = con.cursor()
     cursor.execute(query)
     con.commit()
 
 def generate_recommendations(users, posts):
+    cacherecommendations()
     for r in users:
         user = r[0]
         # Fetching user interests
@@ -162,7 +162,7 @@ def generate_recommendations(users, posts):
                 score = row[1]
                 user_interests[tag] = score 
             similarity = cosine_similarity(user_interests, post_tags)
-            if similarity > 0.1:
+            if similarity > 0.2:
                 recommend(user, post, similarity)
     cacheinteractions()
 
