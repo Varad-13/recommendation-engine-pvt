@@ -79,7 +79,7 @@ def generatescores(interests, interactions):
 def updatescore(scores, userid):
     cursor = con.cursor()
     for tag, score in scores.items():
-        query = 'UPDATE core_userinterests SET score = "'+str(score)+'" WHERE user_id = "'+str(userid)+'" AND tag_id = "'+str(tag)+'";'
+        query = 'UPDATE core_userinterests SET score = "'+str(int(score))+'" WHERE user_id = "'+str(userid)+'" AND tag_id = "'+str(tag)+'";'
         cursor.execute(query)
     con.commit()
 
