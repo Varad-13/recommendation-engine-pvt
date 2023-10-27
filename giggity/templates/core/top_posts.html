@@ -10,6 +10,11 @@
                 <div class="column is-4">
                     <a href = "{% url 'details' post.link %}">
                     <div class="card large">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                                <img src="https://picsum.photos/400/250" alt="Image">
+                            </figure>
+                        </div>
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
@@ -27,7 +32,7 @@
                             </div>
                             <div class="content">
                                 <p class="title is-4 no-padding">{{ post.name }}</p>
-                                <p>{{ post.description }}</p>
+                                <p>{{ post.description|slice:":100" }}...</p>
                             </div>
                             <div class="content">
                                 <strong class="strong">Amount: ${{ post.amount }}</strong>
@@ -49,6 +54,11 @@
                 <div class="column is-4">
                     <a href = "{% url 'details' post.link %}">
                     <div class="card large">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                                <img src="https://picsum.photos/400/250" alt="Image">
+                            </figure>
+                        </div>
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
@@ -66,7 +76,7 @@
                             </div>
                             <div class = "content">
                                 <p class="title is-4 no-padding">{{ post.name }}</p>
-                                <p>{{ post.description }}</p>
+                                <p>{{ post.description|slice:":100" }}...</p>
                             </div>
                             <div class="content">
                                 <strong class="strong">Amount: ${{ post.amount }}</strong>
@@ -86,6 +96,11 @@
                 <div class="column is-4">
                     <a href = "{% url 'details' post.link %}">
                     <div class="card large">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                                <img src="https://picsum.photos/400/250" alt="Image">
+                            </figure>
+                        </div>
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
@@ -103,7 +118,7 @@
                             </div>
                             <div class="content">
                                 <p class="title is-4 no-padding">{{ post.name }}</p>
-                                <p>{{ post.description }}</p>
+                                <p>{{ post.description|slice:":100" }}...</p>
                             </div>
                             <div class="content">
                                 <strong class="strong">Amount: ${{ post.amount }}</strong>

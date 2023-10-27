@@ -32,7 +32,7 @@ class Post(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
-    images = models.ImageField(upload_to='images/', blank=True)
+    images = models.ImageField(upload_to='images/', null=True)
     link = models.SlugField(unique=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
 

@@ -14,7 +14,7 @@ def landing(request):
 def index(request):
     if request.user.is_authenticated:
         users = UserProfile.objects.exclude(username=request.user.username)
-        posts = Post.objects.all()
+        posts = Post.objects.all().order_by('-post_id')[:30]
         user_profiles = UserProfile.objects.in_bulk([post.freelancer.user_id.id for post in posts])
         tags = Post_tag.objects.filter(post__in=posts, score=10)
         context = {
