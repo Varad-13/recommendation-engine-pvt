@@ -35,4 +35,4 @@ for _ in range(num_interactions):
 conn.commit()
 conn.close()
 
-print(f"Generated {num_interactions} random interactions.")
+print(f"Generated {num_interactions} random interactions for each user.")
